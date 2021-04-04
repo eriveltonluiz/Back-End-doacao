@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,5 +37,10 @@ public class DoacaoController {
 	@GetMapping(value="buscar/{id}",produces = "application/json")
 	public ResponseEntity<List<FilhoMaterial>> listarMateriaisCriancasDoacaoId(@PathVariable Long id){
 		return ResponseEntity.ok().body(materiaisFilhoRepository.materiaisFilhoPorID(id));
+	}
+	
+	@PutMapping(produces = "application/json")
+	public ResponseEntity<List<FilhoMaterial>> returnConclusaoDoacaoMat(@RequestBody List<FilhoMaterial> filhoMaterial){
+		return ResponseEntity.ok().body(materiaisFilhoRepository.saveAll(filhoMaterial));
 	}
 }
