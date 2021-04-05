@@ -33,4 +33,12 @@ public interface MaterialFilhoRepository extends JpaRepository<FilhoMaterial, Lo
 	@Query("select fm from FilhoMaterial fm where fm.id.filho.id = ?1 and fm.id.material.id = ?2")
 	FilhoMaterial buscarFilhoMaterialPorID(Long id, Long idmat);
 	
+	
+	@Query(nativeQuery = true, value = "select f.nome as nome_filho, e.uf, e.localidade, e.nome, f.url_foto from filho_material as fm inner join filho as f " + 
+			"on fm.filho_id = f.id " + 
+			"inner join escola as e on f.escola_id = e.id " + 
+			"inner join material as ma on fm.material_id = ma.id " +
+			"where fm.status_doacao != 'CONFIRMADO' and ma.id = :mat " +
+			"group by f.nome, e.uf, e.localidade, f.url_foto, e.nome")
+	List<Object> materiais(@Param("mat")Long idmaterial);	
 }

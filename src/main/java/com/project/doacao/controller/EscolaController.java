@@ -22,11 +22,18 @@ public class EscolaController {
 	
 	@PutMapping
 	public ResponseEntity<Escola> editar(@RequestBody Escola escola){
-		return ResponseEntity.ok().body(escolaRepository.save(escola));
+		try {
+			escola = escolaRepository.save(escola);
+		return ResponseEntity.ok().body(escola);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	@PostMapping
 	public ResponseEntity<Escola> salvar(@RequestBody Escola escola){
+		escola.setId(null);
 		return ResponseEntity.ok().body(escolaRepository.save(escola));
 	}
 	

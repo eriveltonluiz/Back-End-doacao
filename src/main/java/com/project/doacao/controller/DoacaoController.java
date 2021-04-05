@@ -28,6 +28,12 @@ public class DoacaoController {
 	@Autowired
 	private MaterialRepository materialRepository;
 	
+	@GetMapping(value = "filtros/{id}" ,produces = "application/json")
+	public ResponseEntity<List<Object>> listarCriancasDependentesDoacaoFiltros(@PathVariable Long id){
+		List<Object> list = materiaisFilhoRepository.materiais(id);
+		return ResponseEntity.ok().body(list);
+	}
+	
 	@GetMapping(produces = "application/json")
 	public ResponseEntity<List<Object>> listarCriancasDependentesDoacao(){
 		
