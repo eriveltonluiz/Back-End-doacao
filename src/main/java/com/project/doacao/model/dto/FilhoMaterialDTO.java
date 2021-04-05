@@ -13,9 +13,15 @@ import lombok.Setter;
 @AllArgsConstructor
 public class FilhoMaterialDTO {
 	
-	private String nome;
-	private String urlFoto;
-	private String nomeEscola;
-	private String localidade;
+	private String nomePai;
+	private String nomeFilho;
+	private String emailPai;
+	private String emailDoador;
+	private String contatoPai;
+	private String rua;
+	private String numero;
+	private String cep;
 	private String uf;
+	private String localidade;
+	
 }
