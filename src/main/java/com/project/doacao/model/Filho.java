@@ -8,8 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,6 +33,8 @@ public class Filho {
 	private Long id;
 	
 	@Column(columnDefinition = "DATE", name = "data_nascimento")
+	@JsonFormat(pattern = "dd/MM/yyyy", timezone = "GMT-3")
+	@DateTimeFormat(iso = ISO.DATE, pattern = "dd/MM/yyyy")
 	private LocalDate dataNascimento;
 	private String nome;
 	

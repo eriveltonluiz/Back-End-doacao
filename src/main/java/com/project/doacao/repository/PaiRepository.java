@@ -11,5 +11,5 @@ public interface PaiRepository extends JpaRepository<Pai, Long>{
 
 	@Query("select p from Pai p where p.email = ?1 and p.senha = ?2")
 	Pai findPaiByEmailSenha(String email, String senha);
-
+	
 }

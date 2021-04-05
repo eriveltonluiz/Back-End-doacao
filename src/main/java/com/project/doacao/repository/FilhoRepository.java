@@ -11,7 +11,7 @@ import com.project.doacao.model.Filho;
 @Repository
 public interface FilhoRepository extends JpaRepository<Filho, Long>{
 
-	@Query("select * from Filho f where f.pai.id = ?1")
+	@Query("select f from Filho f where f.pai.id = ?1")
 	List<Filho> findFilhoByID(Long id);
 	
 }
