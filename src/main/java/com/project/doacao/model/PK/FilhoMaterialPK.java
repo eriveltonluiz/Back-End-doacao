@@ -6,7 +6,6 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.project.doacao.model.Escola;
 import com.project.doacao.model.Filho;
 import com.project.doacao.model.Material;
 

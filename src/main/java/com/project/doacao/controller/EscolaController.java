@@ -1,6 +1,7 @@
 package com.project.doacao.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,7 +35,7 @@ public class EscolaController {
 	@PostMapping
 	public ResponseEntity<Escola> salvar(@RequestBody Escola escola){
 		escola.setId(null);
-		return ResponseEntity.ok().body(escolaRepository.save(escola));
+		return ResponseEntity.status(HttpStatus.CREATED).body(escolaRepository.save(escola));
 	}
 	
 	@GetMapping(value = "{nome}")

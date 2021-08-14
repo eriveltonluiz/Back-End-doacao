@@ -3,6 +3,7 @@ package com.project.doacao.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,10 +41,10 @@ public class FilhoController {
 	
 	@PostMapping
 	public ResponseEntity<Filho> salvar(@RequestBody Filho filho){
-		return ResponseEntity.ok().body(filhoRepository.save(filho));
+		return ResponseEntity.status(HttpStatus.CREATED).body(filhoRepository.save(filho));
 	}
 	
-	@DeleteMapping(value = "/{id}", produces = "application/json")
+	@DeleteMapping(value = "{id}", produces = "application/json")
 	public ResponseEntity<Filho> deletar(@PathVariable(value = "id") Long id) {
 		filhoRepository.deleteById(id);
 		return ResponseEntity.noContent().build();

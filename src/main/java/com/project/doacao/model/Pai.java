@@ -1,15 +1,23 @@
 package com.project.doacao.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.UniqueConstraint;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -27,7 +35,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class Pai implements Serializable{
+public class Pai implements UserDetails{
 	
 	private static final long serialVersionUID = 1L;
 
@@ -54,5 +62,48 @@ public class Pai implements Serializable{
 	@JsonIgnore
 	@OneToMany(mappedBy = "pai")
 	private List<Filho> filhos = new ArrayList<Filho>();
+	
+	@Getter
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "usuario_role",
+				joinColumns = @JoinColumn(name = "usuario_id"),
+				inverseJoinColumns = @JoinColumn(name = "role_id"),
+				uniqueConstraints = @UniqueConstraint(columnNames = {"usuario_id", "role_id"}, name = "uq_usuario_role"))
+	private List<Role> roles;
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return getRoles();
+	}
+
+	@Override
+	public String getPassword() {
+		return this.getPassword();
+	}
+
+	@Override
+	public String getUsername() {
+		return this.email;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 	
 }
