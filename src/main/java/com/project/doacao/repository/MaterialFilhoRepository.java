@@ -9,7 +9,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.project.doacao.model.FilhoMaterial;
-import com.project.doacao.model.Material;
 import com.project.doacao.model.PK.FilhoMaterialPK;
 import com.project.doacao.model.dto.FilhoMatInterfaceDTO;
 

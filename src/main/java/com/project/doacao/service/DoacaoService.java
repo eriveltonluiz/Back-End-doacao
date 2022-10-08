@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.doacao.model.FilhoMaterial;
-import com.project.doacao.model.Material;
 import com.project.doacao.model.dto.FilhoMatInterfaceDTO;
 import com.project.doacao.repository.MaterialFilhoRepository;
 
@@ -18,8 +17,8 @@ public class DoacaoService {
 
 	public List<FilhoMatInterfaceDTO> filterListChildrenDependentOfDonationOfMaterial(Long idmaterial) {
 		try {
-		Material material = new Material(idmaterial, null, null);
-		FilhoMaterial list = materialFilhoRepository.findFirstByIdMaterialId(material.getId()).get();
+//		Material material = new Material(idmaterial, null, null);
+//		FilhoMaterial list = materialFilhoRepository.findFirstByIdMaterialId(material.getId()).get();
 			
 //			for (FilhoMaterial f : list) {
 //				System.out.println(f.getId().getMaterial().getDescricao());
